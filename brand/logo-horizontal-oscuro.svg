@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 132" role="img" aria-label="IR Consulting">
+  <style>@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&amp;display=swap');</style>
+  <rect width="560" height="132" fill="#0b1f38"/>
+  <g transform="translate(6 6) scale(.6)"><defs>
+    <linearGradient id="og" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#a8844f"/><stop offset=".55" stop-color="#d9bb80"/><stop offset="1" stop-color="#f1dca8"/></linearGradient>
+    <linearGradient id="os" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#8e949b"/><stop offset=".6" stop-color="#d5d9dd"/><stop offset="1" stop-color="#f4f5f6"/></linearGradient>
+    <linearGradient id="osd" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#5f666e"/><stop offset="1" stop-color="#9aa1a8"/></linearGradient>
+  </defs>
+  <rect x="92" y="46" width="12" height="22" fill="url(#os)"/><rect x="110" y="32" width="12" height="36" fill="url(#os)"/><rect x="128" y="16" width="12" height="52" fill="url(#os)"/>
+  <rect x="56" y="74" width="28" height="108" fill="url(#og)"/>
+  <path fill="url(#os)" fill-rule="evenodd" d="M96 96H140C161 96 174 109 174 127C174 142 165 152 152 155L178 182H148L126 157H122V182H96ZM122 116V137H139C147 137 151 133 151 126.5C151 120 147 116 139 116Z"/>
+  <line x1="132" y1="122" x2="172" y2="80" stroke="#0b1f38" stroke-width="13" stroke-linecap="square"/>
+  <line x1="132" y1="122" x2="170" y2="82" stroke="url(#os)" stroke-width="7" stroke-linecap="square"/>
+  <path d="M186 64L182 92L160 72Z" fill="url(#os)"/>
+  <line x1="24" y1="186" x2="154" y2="46" stroke="#0b1f38" stroke-width="16"/>
+  <line x1="24" y1="186" x2="154" y2="46" stroke="url(#og)" stroke-width="9"/>
+  <line x1="52" y1="190" x2="146" y2="88" stroke="#0b1f38" stroke-width="14"/>
+  <line x1="52" y1="190" x2="146" y2="88" stroke="url(#og)" stroke-width="7"/>
+  <path d="M176 22L168 60L138 34Z" fill="url(#og)"/></g>
+  <text x="140" y="74" style="font-family:Montserrat,'Manrope',Arial,sans-serif;font-weight:700;font-size:44px;letter-spacing:.5px"><tspan fill="url(#og)">IR </tspan><tspan fill="url(#os)">CONSULTING</tspan></text>
+  <text x="142" y="104" fill="#9ea4ab" style="font-family:Montserrat,'Manrope',Arial,sans-serif;font-weight:600;font-size:13.5px;letter-spacing:2.2px">CONSULTORÍA ESTRATÉGICA Y FINANCIERA</text>
+</svg>

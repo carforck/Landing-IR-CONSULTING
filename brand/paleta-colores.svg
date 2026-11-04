@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" role="img" aria-label="Paleta IR Consulting">
+  <style>@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&amp;display=swap');</style>
+  <rect width="1200" height="680" fill="#ffffff"/>
+  <text x="40" y="70" fill="#0b1f38" style="font-family:Montserrat,'Manrope',Arial,sans-serif;font-weight:700;font-size:30px">IR Consulting · Paleta de colores</text>
+  <text x="40" y="98" fill="#7a8188" style="font-family:Montserrat,'Manrope',Arial,sans-serif;font-size:15px">Corporativa (marino, oro, plata) con acentos Caribe (turquesa, arena) · Tipografías: Montserrat (logo), Manrope + Inter (web)</text>
+  <rect x="40" y="120" width="260" height="150" rx="14" fill="#0b1f38"/>
+  <text x="40" y="302" fill="#0b1f38" style="font-family:Montserrat,'Manrope',Arial,sans-serif;font-weight:700;font-size:20px">Azul marino</text>
+  <text x="40" y="328" fill="#5f666e" style="font-family:Montserrat,'Manrope',Arial,sans-serif;font-weight:600;font-size:16px">#0B1F38</text>
+  <text x="40" y="352" fill="#7a8188" style="font-family:Montserrat,'Manrope',Arial,sans-serif;font-size:13px">Fondo corporativo, header, footer</text><rect x="330" y="120" width="260" height="150" rx="14" fill="#071528"/>
+  <text x="330" y="302" fill="#0b1f38" style="font-family:Montserrat,'Manrope',Arial,sans-serif;font-weight:700;font-size:20px">Marino profundo</text>
+  <text x="330" y="328" fill="#5f666e" style="font-family:Montserrat,'Manrope',Arial,sans-serif;font-weight:600;font-size:16px">#071528</text>
+  <text x="330" y="352" fill="#7a8188" style="font-family:Montserrat,'Manrope',Arial,sans-serif;font-size:13px">Sombras y bandas oscuras</text><rect x="620" y="120" width="260" height="150" rx="14" fill="#c9a467"/>
+  <text x="620" y="302" fill="#0b1f38" style="font-family:Montserrat,'Manrope',Arial,sans-serif;font-weight:700;font-size:20px">Oro</text>
+  <text x="620" y="328" fill="#5f666e" style="font-family:Montserrat,'Manrope',Arial,sans-serif;font-weight:600;font-size:16px">#C9A467</text>
+  <text x="620" y="352" fill="#7a8188" style="font-family:Montserrat,'Manrope',Arial,sans-serif;font-size:13px">Acento principal, cifras, detalles</text><rect x="910" y="120" width="260" height="150" rx="14" fill="#ecd49c"/>
+  <text x="910" y="302" fill="#0b1f38" style="font-family:Montserrat,'Manrope',Arial,sans-serif;font-weight:700;font-size:20px">Oro claro</text>
+  <text x="910" y="328" fill="#5f666e" style="font-family:Montserrat,'Manrope',Arial,sans-serif;font-weight:600;font-size:16px">#ECD49C</text>
+  <text x="910" y="352" fill="#7a8188" style="font-family:Montserrat,'Manrope',Arial,sans-serif;font-size:13px">Brillos y degradados</text><rect x="40" y="390" width="260" height="150" rx="14" fill="#c9ccd0"/>
+  <text x="40" y="572" fill="#0b1f38" style="font-family:Montserrat,'Manrope',Arial,sans-serif;font-weight:700;font-size:20px">Plata</text>
+  <text x="40" y="598" fill="#5f666e" style="font-family:Montserrat,'Manrope',Arial,sans-serif;font-weight:600;font-size:16px">#C9CCD0</text>
+  <text x="40" y="622" fill="#7a8188" style="font-family:Montserrat,'Manrope',Arial,sans-serif;font-size:13px">Texto sobre marino, isotipo</text><rect x="330" y="390" width="260" height="150" rx="14" fill="#5f666e"/>
+  <text x="330" y="572" fill="#0b1f38" style="font-family:Montserrat,'Manrope',Arial,sans-serif;font-weight:700;font-size:20px">Grafito</text>
+  <text x="330" y="598" fill="#5f666e" style="font-family:Montserrat,'Manrope',Arial,sans-serif;font-weight:600;font-size:16px">#5F666E</text>
+  <text x="330" y="622" fill="#7a8188" style="font-family:Montserrat,'Manrope',Arial,sans-serif;font-size:13px">Texto secundario sobre claro</text><rect x="620" y="390" width="260" height="150" rx="14" fill="#2ec4b6"/>
+  <text x="620" y="572" fill="#0b1f38" style="font-family:Montserrat,'Manrope',Arial,sans-serif;font-weight:700;font-size:20px">Turquesa Caribe</text>
+  <text x="620" y="598" fill="#5f666e" style="font-family:Montserrat,'Manrope',Arial,sans-serif;font-weight:600;font-size:16px">#2EC4B6</text>
+  <text x="620" y="622" fill="#7a8188" style="font-family:Montserrat,'Manrope',Arial,sans-serif;font-size:13px">Botones y acentos de acción</text><rect x="910" y="390" width="260" height="150" rx="14" fill="#faf6ef" stroke="#e3e0d8"/>
+  <text x="910" y="572" fill="#0b1f38" style="font-family:Montserrat,'Manrope',Arial,sans-serif;font-weight:700;font-size:20px">Arena</text>
+  <text x="910" y="598" fill="#5f666e" style="font-family:Montserrat,'Manrope',Arial,sans-serif;font-weight:600;font-size:16px">#FAF6EF</text>
+  <text x="910" y="622" fill="#7a8188" style="font-family:Montserrat,'Manrope',Arial,sans-serif;font-size:13px">Fondos claros de sección</text>
+</svg>

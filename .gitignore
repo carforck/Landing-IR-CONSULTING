@@ -1,0 +1,4 @@
+node_modules
+dist
+# Insumo de referencia de la cliente: no definitivo, no se publica (repo público).
+docs/*.pdf
