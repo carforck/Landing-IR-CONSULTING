@@ -29,10 +29,10 @@
   font-family: var(--display); font-size: 2.6rem; font-weight: 600; line-height: 1;
   color: var(--mint-50); transition: color .25s; pointer-events: none;
 }
-.svc-card:hover { border-color: var(--mint); transform: translateY(-2px); box-shadow: 0 14px 30px rgba(8, 62, 84, .08); }
+.svc-card:hover { border-color: var(--mint); transform: translateY(-2px); box-shadow: 0 14px 30px rgba(11, 31, 56, .08); }
 .svc-card.is-active {
   background: var(--teal); border-color: var(--teal); color: #cfe5ea;
-  box-shadow: 0 18px 36px rgba(8, 62, 84, .22);
+  box-shadow: 0 18px 36px rgba(11, 31, 56, .22);
 }
 .svc-card.is-active::after { color: rgba(46, 196, 182, .22); }
 .svc-card__icon {
@@ -63,7 +63,7 @@
 
 .svc-panel {
   border-radius: calc(var(--radius) + 4px); background: #fff;
-  border: 1px solid var(--line); box-shadow: 0 24px 50px rgba(8, 62, 84, .07);
+  border: 1px solid var(--line); box-shadow: 0 24px 50px rgba(11, 31, 56, .07);
   animation: svc-in .45s var(--ease);
 }
 .svc-panel:focus-visible { outline-offset: 4px; }
@@ -95,7 +95,7 @@
 /* Acordeón (móvil) */
 .svc-acc { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
 .svc-acc__item { border: 1px solid var(--line); border-radius: var(--radius); background: #fff; overflow: hidden; transition: border-color .25s, box-shadow .25s; }
-.svc-acc__item.is-open { border-color: var(--teal); box-shadow: 0 14px 30px rgba(8, 62, 84, .1); }
+.svc-acc__item.is-open { border-color: var(--teal); box-shadow: 0 14px 30px rgba(11, 31, 56, .1); }
 .svc-acc__heading { margin: 0; font: inherit; }
 .svc-acc__btn {
   display: flex; align-items: flex-start; gap: 14px; width: 100%;
@@ -195,7 +195,7 @@
 
 .ctc-form {
   background: #fff; border: 1px solid var(--line); border-radius: calc(var(--radius) + 4px);
-  padding: clamp(22px, 4vw, 40px); box-shadow: 0 24px 50px rgba(8, 62, 84, .07);
+  padding: clamp(22px, 4vw, 40px); box-shadow: 0 24px 50px rgba(11, 31, 56, .07);
   display: grid; gap: 18px;
 }
 .ctc-form__title { font-family: var(--display); font-size: 1.35rem; margin: 0; }

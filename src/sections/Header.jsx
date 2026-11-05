@@ -3,25 +3,15 @@ import { Menu, X } from 'lucide-react';
 import { nav } from '../data.js';
 import './chrome.css';
 
-// Monograma propio: marco fino, I + R geométricas y un trazo ascendente (estrategia -> valor).
-export function Monogram({ size = 38 }) {
-  return (
-    <svg className="hdr-mono" width={size} height={size} viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-      <rect x="1" y="1" width="38" height="38" rx="9" fill="none" stroke="currentColor" strokeOpacity="0.55" strokeWidth="1.2" />
-      <rect x="10" y="10" width="3.2" height="20" rx="0.6" fill="currentColor" />
-      <path d="M17 30V10h6.2a5.6 5.6 0 0 1 0 11.2H17" fill="none" stroke="currentColor" strokeWidth="3.2" strokeLinejoin="round" />
-      <path d="M22.5 21.2 30 30" stroke="var(--mint)" strokeWidth="3.2" strokeLinecap="round" />
-      <circle cx="31" cy="9" r="1.8" fill="var(--mint)" />
-    </svg>
-  );
-}
-
-export function Logo({ className = '' }) {
+// Logo oficial: isotipo (brand/) + logotipo en Montserrat, oro y plata.
+export function Logo({ className = '', size = 44, tagline = false }) {
   return (
     <span className={`hdr-logo ${className}`}>
-      <Monogram />
-      <span className="hdr-logo__ir">IR</span>
-      <span className="hdr-logo__sub">Consulting</span>
+      <img className="hdr-logo__iso" src="/brand/isotipo.svg" alt="" width={size} height={size} />
+      <span className="hdr-logo__text">
+        <span className="hdr-logo__word"><span className="hdr-logo__ir">IR</span> <span className="hdr-logo__sub">CONSULTING</span></span>
+        {tagline && <span className="hdr-logo__tag">Consultoría estratégica y financiera</span>}
+      </span>
     </span>
   );
 }

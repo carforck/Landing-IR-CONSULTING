@@ -1,1 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="#103e40"/><text x="32" y="42" font-family="Georgia,serif" font-size="28" font-weight="700" fill="#fff" text-anchor="middle">IR</text><rect x="14" y="48" width="36" height="2" fill="#75b1a3"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="IR Consulting">
+  
+  
+  <defs>
+    <linearGradient id="tg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#a8844f"/><stop offset=".55" stop-color="#d9bb80"/><stop offset="1" stop-color="#f1dca8"/></linearGradient>
+    <linearGradient id="ts" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#8e949b"/><stop offset=".6" stop-color="#d5d9dd"/><stop offset="1" stop-color="#f4f5f6"/></linearGradient>
+    <linearGradient id="tsd" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#5f666e"/><stop offset="1" stop-color="#9aa1a8"/></linearGradient>
+  </defs>
+  <rect x="92" y="46" width="12" height="22" fill="url(#ts)"/><rect x="110" y="32" width="12" height="36" fill="url(#ts)"/><rect x="128" y="16" width="12" height="52" fill="url(#ts)"/>
+  <rect x="56" y="74" width="28" height="108" fill="url(#tg)"/>
+  <path fill="url(#ts)" fill-rule="evenodd" d="M96 96H140C161 96 174 109 174 127C174 142 165 152 152 155L178 182H148L126 157H122V182H96ZM122 116V137H139C147 137 151 133 151 126.5C151 120 147 116 139 116Z"/>
+  <line x1="132" y1="122" x2="172" y2="80" stroke="#0b1f38" stroke-width="13" stroke-linecap="square"/>
+  <line x1="132" y1="122" x2="170" y2="82" stroke="url(#ts)" stroke-width="7" stroke-linecap="square"/>
+  <path d="M186 64L182 92L160 72Z" fill="url(#ts)"/>
+  <line x1="24" y1="186" x2="154" y2="46" stroke="#0b1f38" stroke-width="16"/>
+  <line x1="24" y1="186" x2="154" y2="46" stroke="url(#tg)" stroke-width="9"/>
+  <line x1="52" y1="190" x2="146" y2="88" stroke="#0b1f38" stroke-width="14"/>
+  <line x1="52" y1="190" x2="146" y2="88" stroke="url(#tg)" stroke-width="7"/>
+  <path d="M176 22L168 60L138 34Z" fill="url(#tg)"/>
+</svg>

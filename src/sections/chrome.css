@@ -2,14 +2,13 @@
 
 /* ---------- Logotipo ---------- */
 .hdr-logo { display: inline-flex; align-items: center; gap: 12px; color: #fff; line-height: 1; }
-.hdr-mono { flex: none; color: #fff; }
-.hdr-logo__ir { font-family: var(--display); font-weight: 600; font-size: 1.9rem; letter-spacing: 0.02em; }
-.hdr-logo__sub { font-size: 0.66rem; font-weight: 600; letter-spacing: 0.32em; text-transform: uppercase; color: #d3e9ee; padding-left: 12px; border-left: 1px solid rgba(255, 255, 255, 0.3); align-self: center; padding-block: 4px; }
+.hdr-logo__ir { background: linear-gradient(135deg, #e9cf92, #b8935a); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hdr-logo__sub { background: linear-gradient(135deg, #f4f5f6, #aeb3b9); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
 /* ---------- Header ---------- */
 .hdr { position: fixed; inset: 0 0 auto; z-index: 50; color: #fff; background: transparent; transition: background .3s var(--ease), box-shadow .3s var(--ease), border-color .3s; border-bottom: 1px solid transparent; }
-.hdr--solid { background: rgba(8, 62, 84, 0.97); box-shadow: 0 10px 30px rgba(6, 26, 27, 0.28); border-bottom-color: rgba(46, 196, 182, 0.18); }
-@supports (backdrop-filter: blur(8px)) { .hdr--solid { background: rgba(8, 62, 84, 0.9); backdrop-filter: blur(10px); } }
+.hdr--solid { background: rgba(11, 31, 56, 0.97); box-shadow: 0 10px 30px rgba(6, 26, 27, 0.28); border-bottom-color: rgba(46, 196, 182, 0.18); }
+@supports (backdrop-filter: blur(8px)) { .hdr--solid { background: rgba(11, 31, 56, 0.9); backdrop-filter: blur(10px); } }
 .hdr__inner { display: flex; align-items: center; gap: 24px; min-height: var(--header-h); }
 .hdr__brand { display: inline-flex; border-radius: 6px; margin-right: auto; }
 .hdr__nav ul { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
@@ -36,9 +35,8 @@
 }
 @media (max-width: 400px) {
   .hdr-logo { gap: 9px; }
-  .hdr-mono { width: 32px; height: 32px; }
-  .hdr-logo__ir { font-size: 1.6rem; }
-  .hdr-logo__sub { font-size: 0.58rem; letter-spacing: 0.24em; padding-left: 9px; }
+    .hdr-logo__iso { width: 36px; height: 36px; }
+  .hdr-logo__word { font-size: 1.1rem; }
 }
 
 /* ---------- Hero ---------- */
@@ -110,3 +108,31 @@
 @media (max-width: 520px) {
   .ftr__top { grid-template-columns: 1fr; gap: 28px; }
 }
+
+.hdr-logo__iso { flex: none; display: block; }
+.hdr-logo__text { display: flex; flex-direction: column; gap: 5px; }
+.hdr-logo__word { font-family: 'Montserrat', var(--display); font-weight: 700; font-size: 1.28rem; letter-spacing: .02em; white-space: nowrap; }
+.hdr-logo__tag { white-space: nowrap; font-family: 'Montserrat', var(--font); font-weight: 600; font-size: .6rem; letter-spacing: .16em; text-transform: uppercase; color: #9ea4ab; }
+
+/* ---- Footer (estilo sotecse: CTA + 4 columnas + barra inferior) ---- */
+.ftr { background: var(--teal-800); color: rgba(255,255,255,.66); padding: 0 0 24px; font-size: .93rem; }
+.ftr__cta { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding: clamp(36px, 5vw, 52px) 0; border-bottom: 1px solid rgba(255,255,255,.08); }
+.ftr__cta h2 { margin: 0 0 6px; color: #fff; font-size: clamp(1.4rem, 2.6vw, 1.9rem); }
+.ftr__cta p { margin: 0; color: rgba(255,255,255,.66); }
+.ftr__grid { display: grid; grid-template-columns: 1.5fr 1.3fr 1fr 1.2fr; gap: 40px; padding: clamp(44px, 6vw, 64px) 0 40px; }
+.ftr__brand p { max-width: 320px; margin: 18px 0 0; }
+.ftr__grid h3 { color: #fff; font-size: .95rem; margin: 0 0 14px; letter-spacing: 0; }
+.ftr__grid ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.ftr__grid li a, .ftr__grid li > span { display: inline-flex; align-items: center; gap: 8px; padding: 6px 0; transition: color .2s, transform .25s var(--ease); }
+.ftr__grid li a:hover { color: #fff; transform: translateX(3px); }
+.ftr__grid li svg { color: var(--sun); flex: none; }
+.ftr__bottom { display: flex; justify-content: space-between; align-items: center; gap: 12px 24px; flex-wrap: wrap; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.08); font-size: .85rem; }
+.ftr__bottom p { margin: 0; }
+.ftr__credit a { display: inline-flex; align-items: center; gap: 3px; min-height: 44px; color: var(--sun); font-weight: 600; }
+.ftr__credit a:hover { text-decoration: underline; }
+@media (max-width: 960px) { .ftr__grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .ftr__grid { grid-template-columns: 1fr; gap: 28px; } .ftr__cta .btn { width: 100%; } }
+.ftr__brand .hdr-logo__iso { width: 58px; height: 58px; }
+.ftr__brand .hdr-logo__word { font-size: 1.5rem; }
+.ftr__brand .hdr-logo__tag { font-size: .62rem; letter-spacing: .12em; }
+@media (max-width: 400px) { .ftr__brand .hdr-logo__tag { font-size: .55rem; letter-spacing: .08em; } .ftr__brand .hdr-logo__word { font-size: 1.3rem; } }

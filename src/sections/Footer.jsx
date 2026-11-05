@@ -1,35 +1,52 @@
-import { ArrowUpRight } from 'lucide-react';
-import { brand, nav } from '../data.js';
+import { ArrowUpRight, MapPin, MessageCircle } from 'lucide-react';
+import { brand, nav, services } from '../data.js';
 import { Logo } from './Header.jsx';
 import './chrome.css';
+
+const wa = brand.contact.whatsapp
+  ? `https://wa.me/${brand.contact.whatsapp}?text=${encodeURIComponent('Hola Isabel, me interesa una asesoría de IR Consulting')}`
+  : '#contacto';
 
 export default function Footer() {
   return (
     <footer className="ftr">
       <div className="container">
-        <div className="ftr__top reveal">
-          <div className="ftr__brand">
-            <a href="#main" className="ftr__logo" aria-label="IR Consulting, volver al inicio">
-              <Logo />
-            </a>
-            <p className="ftr__tagline">{brand.tagline}</p>
-            <p className="ftr__city">{brand.city}</p>
+        <div className="ftr__cta">
+          <div>
+            <h2>¿Conversamos sobre su empresa?</h2>
+            <p>Cuéntenos el reto y le proponemos un alcance a la medida.</p>
           </div>
+          <a className="btn btn--mint" href={wa} target={brand.contact.whatsapp ? '_blank' : undefined} rel="noopener noreferrer">
+            <MessageCircle size={18} aria-hidden="true" /> Escribir por WhatsApp
+          </a>
+        </div>
 
-          <nav className="ftr__nav" aria-label="Pie de página">
+        <div className="ftr__grid">
+          <div className="ftr__brand">
+            <a href="#main" aria-label="IR Consulting, volver al inicio"><Logo tagline /></a>
+            <p>{brand.summary}</p>
+          </div>
+          <div>
+            <h3>Servicios</h3>
+            <ul>{services.map((s) => <li key={s.id}><a href="#servicios">{s.title}</a></li>)}</ul>
+          </div>
+          <div>
+            <h3>La firma</h3>
+            <ul>{nav.map((n) => <li key={n.id}><a href={`#${n.id}`}>{n.label}</a></li>)}</ul>
+          </div>
+          <div>
+            <h3>Contacto</h3>
             <ul>
-              {nav.map((item) => (
-                <li key={item.id}><a href={`#${item.id}`}>{item.label}</a></li>
-              ))}
+              {brand.contact.phone && (
+                <li><a href={wa} target="_blank" rel="noopener noreferrer"><MessageCircle size={16} aria-hidden="true" />{brand.contact.phone}</a></li>
+              )}
+              <li><span><MapPin size={16} aria-hidden="true" />{brand.city}</span></li>
             </ul>
-          </nav>
+          </div>
         </div>
 
         <div className="ftr__bottom">
-          <p>© 2026 IR Consulting · {brand.owner}</p>
-          {brand.contact.phone && (
-            <p><a href={`https://wa.me/${brand.contact.whatsapp}`} target="_blank" rel="noopener noreferrer">WhatsApp {brand.contact.phone}</a></p>
-          )}
+          <p>© {new Date().getFullYear()} IR Consulting · {brand.owner}. Todos los derechos reservados.</p>
           <p className="ftr__credit">
             Hecho por{' '}
             <a href="https://vanttagetech.com/" target="_blank" rel="noopener noreferrer">

@@ -1,12 +1,12 @@
 /* Base IR Consulting: verde petróleo del portafolio (#103E40) + acento menta (#75B1A3). */
 :root {
-  --teal: #083e54;
-  --teal-800: #052c3c;
-  --teal-600: #0e5a72;
+  --teal: #0b1f38;
+  --teal-800: #071528;
+  --teal-600: #16325a;
   --mint: #2ec4b6;
   --mint-700: #0b7a72;   /* menta oscuro para texto sobre blanco (contraste AA) */
   --mint-50: #e6f7f5;
-  --ink: #0d2430;
+  --ink: #0b1f38;
   --text: #3d4f57;
   --muted: #5f7179;
   --line: #e4e2da;
@@ -18,7 +18,7 @@
   --font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --ease: cubic-bezier(0.25, 1, 0.5, 1);
   --header-h: 72px;
-  --sun: #f5b83d;      /* sol caribe: acento cálido */
+  --sun: #d4b06f;      /* sol caribe: acento cálido */
   --coral: #f07258;    /* coral: detalles */
 }
 *, *::before, *::after { box-sizing: border-box; }
@@ -50,7 +50,7 @@ p { margin: 0 0 1em; }
 
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 24px; min-height: 44px; border-radius: 999px; border: 1px solid transparent; font-weight: 600; font-size: 0.95rem; line-height: 1.2; transition: background .2s, border-color .2s, color .2s, transform .2s var(--ease), box-shadow .2s; }
 .btn--primary { background: var(--teal); color: #fff; }
-.btn--primary:hover { background: var(--teal-600); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(8, 62, 84, .22); }
+.btn--primary:hover { background: var(--teal-600); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(11, 31, 56, .22); }
 .btn--mint { background: var(--mint); color: var(--teal-800); }
 .btn--mint:hover { background: #5bd6ca; transform: translateY(-1px); }
 .btn--ghost { border-color: rgba(255,255,255,.45); color: #fff; }
@@ -65,7 +65,7 @@ p { margin: 0 0 1em; }
 /* ---- Medios (integración) ---- */
 .hero__media { position: absolute; inset: 0; z-index: -2; }
 .hero__video { width: 100%; height: 100%; object-fit: cover; opacity: .38; }
-.hero__media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(100deg, rgba(8,62,84,.96) 0%, rgba(8,62,84,.82) 45%, rgba(8,62,84,.55) 100%); }
+.hero__media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(100deg, rgba(11,31,56,.96) 0%, rgba(11,31,56,.82) 45%, rgba(11,31,56,.55) 100%); }
 .svc-detail__img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: var(--radius-sm); margin-bottom: 18px; }
 .firm-photo { margin: clamp(32px, 5vw, 56px) 0; border-radius: var(--radius); overflow: hidden; }
 .firm-photo img { width: 100%; height: auto; aspect-ratio: 21 / 9; object-fit: cover; }
@@ -96,7 +96,7 @@ h3 { font-weight: 700; letter-spacing: -0.01em; }
 /* ---- Caribe: acentos cálidos ---- */
 .hero__line--accent { color: var(--sun) !important; }
 .hero-stats__value { color: var(--sun) !important; }
-.btn--mint { color: #052c3c; }
+.btn--mint { color: #071528; }
 .btn--mint:hover { box-shadow: 0 10px 24px rgba(46, 196, 182, .35); }
 .section--dark .kicker, .hero__kicker { color: var(--sun) !important; }
 .kicker { color: var(--mint-700); }
@@ -118,7 +118,7 @@ h3 { font-weight: 700; letter-spacing: -0.01em; }
 
 /* tarjetas e imágenes con vida */
 .svc-card, .firm-value, .firm-card, [class*="firm-values"] li, .mth-steps li { transition: transform .35s var(--ease), box-shadow .35s var(--ease), background .25s, border-color .25s; }
-.svc-card:hover, [class*="firm-values"] li:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(8, 62, 84, .12); border-color: var(--mint); }
+.svc-card:hover, [class*="firm-values"] li:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(11, 31, 56, .12); border-color: var(--mint); }
 .mth-steps li:hover { transform: translateY(-4px); }
 .firm-photo, .ctc-card__img, .svc-detail__img { overflow: hidden; }
 .firm-photo img, .svc-detail__img, .ctc-card__img { transition: transform 1.2s var(--ease); }
@@ -136,7 +136,7 @@ h3 { font-weight: 700; letter-spacing: -0.01em; }
 
 /* Sectores: iconos Phosphor duotono en tarjeta */
 .sectors__item { gap: 12px !important; padding: 10px 20px 10px 10px !important; background: #fff !important; border: 1px solid var(--line) !important; border-radius: 999px !important; font-weight: 600; color: var(--ink); transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s; }
-.sectors__item:hover { transform: translateY(-3px); border-color: var(--mint); box-shadow: 0 10px 22px rgba(8, 62, 84, .10); }
+.sectors__item:hover { transform: translateY(-3px); border-color: var(--mint); box-shadow: 0 10px 22px rgba(11, 31, 56, .10); }
 .sectors__icon { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: var(--mint-50); color: var(--mint-700); flex: none; }
 .sectors__item:nth-child(3n+2) .sectors__icon { background: #fdf3df; color: #b07800; }
 .sectors__item:nth-child(3n) .sectors__icon { background: #fde9e4; color: #c2482f; }
