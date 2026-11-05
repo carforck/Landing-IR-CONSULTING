@@ -7,10 +7,12 @@
     "setup": "bash scripts/setup.sh",
     "dev": "vite --host",
     "build": "vite build",
-    "preview": "vite preview --host"
+    "preview": "vite preview --host",
+    "deploy": "bash scripts/deploy.sh"
   },
   "dependencies": {
     "@phosphor-icons/react": "2.1.7",
+    "lottie-web": "5.13.0",
     "lucide-react": "0.468.0",
     "react": "18.3.1",
     "react-dom": "18.3.1"

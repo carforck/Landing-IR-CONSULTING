@@ -1,15 +1,20 @@
 import Header from './sections/Header.jsx';
 import Hero from './sections/Hero.jsx';
 import SectorsMarquee from './sections/SectorsMarquee.jsx';
-import Firm from './sections/Firm.jsx';
+import Philosophy from './sections/Philosophy.jsx';
+import WhyGrid from './sections/WhyGrid.jsx';
+import FirmStory from './sections/FirmStory.jsx';
 import Services from './sections/Services.jsx';
+import CtaBand from './sections/CtaBand.jsx';
 import Method from './sections/Method.jsx';
-import Leader from './sections/Leader.jsx';
+import Founder from './sections/Founder.jsx';
 import Contact from './sections/Contact.jsx';
 import FloatingContact from './sections/FloatingContact.jsx';
 import Footer from './sections/Footer.jsx';
 import { useReveal } from './fx.jsx';
 
+// Orden comercial: promesa → confianza (sectores, diferenciales) → oferta → llamada a la acción
+// → cómo trabajamos → quién lo hace → la firma → contacto.
 export default function App() {
   useReveal();
   return (
@@ -19,10 +24,13 @@ export default function App() {
       <main id="main">
         <Hero />
         <SectorsMarquee />
-        <Firm />
+        <WhyGrid />
         <Services />
+        <CtaBand />
         <Method />
-        <Leader />
+        <Founder />
+        <FirmStory />
+        <Philosophy />
         <Contact />
       </main>
       <Footer />

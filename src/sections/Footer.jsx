@@ -11,9 +11,9 @@ export default function Footer() {
   return (
     <footer className="ftr">
       <div className="container">
-        <div className="ftr__cta">
+        <div className="ftr__cta reveal">
           <div>
-            <h2>¿Conversamos sobre su empresa?</h2>
+            <h2 className="ftr__shine">¿Conversamos sobre su empresa?</h2>
             <p>Cuéntenos el reto y le proponemos un alcance a la medida.</p>
           </div>
           <a className="btn btn--mint" href={wa} target={brand.contact.whatsapp ? '_blank' : undefined} rel="noopener noreferrer">
@@ -21,7 +21,7 @@ export default function Footer() {
           </a>
         </div>
 
-        <div className="ftr__grid">
+        <div className="ftr__grid reveal">
           <div className="ftr__brand">
             <a href="#main" aria-label="IR Consulting, volver al inicio"><Logo tagline /></a>
             <p>{brand.summary}</p>

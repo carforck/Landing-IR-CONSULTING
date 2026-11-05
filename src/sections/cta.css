@@ -1,0 +1,8 @@
+.cta { position: relative; overflow: hidden; padding: clamp(56px, 8vw, 88px) 0; color: #cfd6df;
+  background: linear-gradient(120deg, rgba(11,31,56,.94), rgba(11,31,56,.80)), url('/media/contacto.webp') center / cover no-repeat; }
+.cta__inner { display: flex; align-items: center; justify-content: space-between; gap: 28px 48px; flex-wrap: wrap; }
+.cta h2 { color: #fff; margin: 0 0 10px; max-width: 640px; }
+.cta .kicker { color: var(--sun); }
+.cta__text { margin: 0; max-width: 560px; color: #c3cad3; }
+.cta__actions { display: flex; gap: 12px; flex-wrap: wrap; }
+@media (max-width: 560px) { .cta__actions, .cta__actions .btn { width: 100%; } }

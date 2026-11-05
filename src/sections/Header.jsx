@@ -7,9 +7,9 @@ import './chrome.css';
 export function Logo({ className = '', size = 44, tagline = false }) {
   return (
     <span className={`hdr-logo ${className}`}>
-      <img className="hdr-logo__iso" src="/brand/isotipo.svg" alt="" width={size} height={size} />
+      <img className="hdr-logo__iso" src={`${import.meta.env.BASE_URL}brand/isotipo.svg`} alt="IR" width={size} height={size} />
       <span className="hdr-logo__text">
-        <span className="hdr-logo__word"><span className="hdr-logo__ir">IR</span> <span className="hdr-logo__sub">CONSULTING</span></span>
+        <span className="hdr-logo__word"><span className="hdr-logo__sub">CONSULTING</span></span>
         {tagline && <span className="hdr-logo__tag">Consultoría estratégica y financiera</span>}
       </span>
     </span>

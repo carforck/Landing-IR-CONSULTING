@@ -5,6 +5,17 @@ export const brand = {
   owner: 'Isabel Rodríguez',
   tagline: 'Consultoría estratégica y financiera',
   headline: ['Estrategia que transforma.', 'Finanzas que generan valor.'],
+  // Frases rotativas del hero: todas tomadas del portafolio (lema, compromiso y promesas de servicio).
+  rotating: [
+    'Finanzas que generan valor.',
+    'Claridad para decidir.',
+    'Disciplina para ejecutar.',
+    'Información para generar valor.',
+    'Decisiones sustentadas en datos.',
+    'Crecer con control.',
+  ],
+  // "Nace para acompañar a empresarios, gerentes y juntas directivas en decisiones de alto impacto."
+  audiences: ['empresarios', 'gerentes', 'juntas directivas'],
   summary:
     'Firma boutique de consultoría ejecutiva. Soluciones integrales para fortalecer la dirección, rentabilidad y sostenibilidad de las empresas.',
   city: 'Cartagena · Región Caribe',
@@ -13,10 +24,10 @@ export const brand = {
 };
 
 export const nav = [
-  { id: 'firma', label: 'La firma' },
   { id: 'servicios', label: 'Servicios' },
   { id: 'metodologia', label: 'Metodología' },
   { id: 'liderazgo', label: 'Liderazgo' },
+  { id: 'firma', label: 'La firma' },
   { id: 'contacto', label: 'Contacto' },
 ];
 
@@ -40,7 +51,7 @@ export const leader = {
   name: 'Isabel Olivia Rodríguez González',
   role: 'Fundadora y consultora líder',
   // PENDIENTE: la cliente enviará su retrato; si no existe, el componente muestra un monograma.
-  photo: '/img/isabel.jpg',
+  photo: import.meta.env.BASE_URL + 'img/isabel.jpg',
   bio: 'Contadora Pública, Especialista en Finanzas y Magíster en Administración y Gerencia (MBA) de la Universidad Tecnológica de Bolívar, con más de 25 años de trayectoria profesional.',
   stats: [
     { value: '25+', label: 'años de trayectoria' },

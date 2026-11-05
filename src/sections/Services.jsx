@@ -2,11 +2,20 @@ import { useEffect, useRef, useState } from 'react';
 import { Compass, LineChart, Wallet, FileSpreadsheet, ShieldCheck, TrendingUp, Briefcase, ChevronDown, ArrowRight, Check } from 'lucide-react';
 import { services } from '../data.js';
 import { media } from '../media.js';
+import LottieIcon from '../components/LottieIcon.jsx';
 import './services.css';
 
 // Mapa explícito: los `icon` de data.js son nombres de componentes lucide (verificados en 0.468.0).
 const ICONS = { Compass, LineChart, Wallet, FileSpreadsheet, ShieldCheck, TrendingUp };
 const iconFor = (name) => ICONS[name] || Briefcase;
+// Animación Lottie por servicio: public/lottie/<id>.json (mismo id que data.js).
+const LOTTIES = new Set(['estrategia', 'finanzas', 'recursos', 'contabilidad', 'control', 'proyectos']);
+
+function SvcIcon({ s, size }) {
+  const Icon = iconFor(s.icon);
+  if (!LOTTIES.has(s.id)) return <Icon size={Math.round(size * 0.5)} aria-hidden="true" />;
+  return <LottieIcon name={s.id} size={size} fallback={Icon} />;
+}
 
 const MOBILE_QUERY = '(max-width: 759px)';
 
@@ -31,6 +40,9 @@ function Detail({ s }) {
   return (
     <div className="svc-detail">
       <div className="svc-detail__main">
+        {LOTTIES.has(s.id) && (
+          <span className="svc-detail__anim"><LottieIcon name={s.id} size={84} fallback={iconFor(s.icon)} /></span>
+        )}
         <p className="svc-detail__area">{s.area}</p>
         <h3 className="svc-detail__title">{s.title}</h3>
         <p className="svc-detail__lead">{s.lead}</p>
@@ -78,7 +90,6 @@ function Tabs({ active, setActive }) {
     <>
       <div className="svc-grid" role="tablist" aria-label="Líneas de servicio">
         {services.map((s, i) => {
-          const Icon = iconFor(s.icon);
           const selected = i === idx;
           return (
             <button
@@ -93,12 +104,14 @@ function Tabs({ active, setActive }) {
               className={`svc-card${selected ? ' is-active' : ''}`}
               onClick={() => setActive(s.id)}
               onKeyDown={(e) => onKey(e, i)}
+              data-lottie-hover=""
             >
-              <span className="svc-card__icon"><Icon size={24} aria-hidden="true" /></span>
+              <span className="svc-card__icon"><SvcIcon s={s} size={46} /></span>
               <span className="svc-card__area">{s.area}</span>
               <span className="svc-card__title">{s.title}</span>
               <span className="svc-card__lead">{s.lead}</span>
               <span className="svc-card__more" aria-hidden="true">{selected ? 'Viendo detalle' : 'Ver detalle'}</span>
+              {selected && <span className="svc-card__progress" key={s.id} aria-hidden="true" />}
             </button>
           );
         })}
@@ -114,7 +127,6 @@ function Accordion({ active, setActive }) {
   return (
     <ul className="svc-acc">
       {services.map((s) => {
-        const Icon = iconFor(s.icon);
         const open = s.id === active;
         return (
           <li key={s.id} className={`svc-acc__item${open ? ' is-open' : ''}`}>
@@ -126,8 +138,9 @@ function Accordion({ active, setActive }) {
                 aria-expanded={open}
                 aria-controls={`svc-acc-panel-${s.id}`}
                 onClick={() => setActive(open ? null : s.id)}
+                data-lottie-hover=""
               >
-                <span className="svc-card__icon"><Icon size={22} aria-hidden="true" /></span>
+                <span className="svc-card__icon"><SvcIcon s={s} size={40} /></span>
                 <span className="svc-acc__text">
                   <span className="svc-card__area">{s.area}</span>
                   <span className="svc-acc__title">{s.title}</span>
@@ -146,9 +159,39 @@ function Accordion({ active, setActive }) {
   );
 }
 
+const AUTO_MS = 7000;      // cada cuánto avanza solo
+const HOLD_MS = 15000;     // pausa tras una elección del usuario
+
 export default function Services() {
   const mobile = useIsMobile();
   const [active, setActive] = useState(services[0].id);
+  const [hover, setHover] = useState(false);
+  const [inView, setInView] = useState(false);
+  const [hold, setHold] = useState(false);
+  const wrapRef = useRef(null);
+  const reduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const auto = !mobile && !reduced && inView && !hover;
+
+  // Solo rota mientras la sección está en pantalla.
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el || !('IntersectionObserver' in window)) return undefined;
+    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), { threshold: 0.35 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!auto) return undefined;
+    const t = setTimeout(() => {
+      setHold(false);
+      const i = services.findIndex((x) => x.id === active);
+      setActive(services[(i + 1) % services.length].id);
+    }, hold ? HOLD_MS : AUTO_MS);
+    return () => clearTimeout(t);
+  }, [auto, active, hold]);
+
+  const choose = (id) => { setHold(true); setActive(id); };
 
   return (
     <section id="servicios" className="section svc">
@@ -159,8 +202,16 @@ export default function Services() {
           <p>Seis líneas de trabajo que se combinan según el reto de cada organización. Seleccione una para ver su alcance.</p>
         </header>
         {/* reveal solo en el contenedor estable: su contenido cambia entre tabs y acordeón. */}
-        <div className="svc-wrap reveal">
-          {mobile ? <Accordion active={active} setActive={setActive} /> : <Tabs active={active} setActive={setActive} />}
+        <div
+          ref={wrapRef}
+          className={`svc-wrap reveal${auto ? ' is-auto' : ''}`}
+          style={{ '--svc-dur': `${hold ? HOLD_MS : AUTO_MS}ms` }}
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
+          onFocus={() => setHover(true)}
+          onBlur={() => setHover(false)}
+        >
+          {mobile ? <Accordion active={active} setActive={setActive} /> : <Tabs active={active} setActive={choose} />}
         </div>
       </div>
     </section>

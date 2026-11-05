@@ -1,18 +1,32 @@
 import { useEffect, useRef, useState } from 'react';
 
-// Añade .is-in a los elementos .reveal cuando entran en pantalla. Respeta prefers-reduced-motion.
+// Marca los elementos .reveal con data-in="1" al entrar en pantalla. Se usa un atributo (no una clase)
+// porque React reescribe className al re-renderizar y borraría la marca, dejando el bloque invisible.
+// Un MutationObserver incorpora los .reveal que se monten después. Respeta prefers-reduced-motion.
 export function useReveal() {
   useEffect(() => {
-    const els = document.querySelectorAll('.reveal');
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
-      els.forEach((el) => el.classList.add('is-in'));
-      return;
+    const show = (el) => el.setAttribute('data-in', '1');
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced || !('IntersectionObserver' in window)) {
+      document.querySelectorAll('.reveal').forEach(show);
+      return undefined;
     }
     const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+      entries.forEach((e) => { if (e.isIntersecting) { show(e.target); io.unobserve(e.target); } });
     }, { rootMargin: '0px 0px -8% 0px' });
-    els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+    const watch = (root) => root.querySelectorAll?.('.reveal:not([data-in])').forEach((el) => io.observe(el));
+    watch(document);
+    const mo = new MutationObserver((muts) => muts.forEach((m) => m.addedNodes.forEach((n) => {
+      if (n.nodeType !== 1) return;
+      if (n.matches('.reveal:not([data-in])')) io.observe(n);
+      watch(n);
+    })));
+    mo.observe(document.body, { childList: true, subtree: true });
+    // Red de seguridad: nada debe quedar oculto si el observador no dispara (pestañas en segundo plano, etc.).
+    const t = setTimeout(() => document.querySelectorAll('.reveal:not([data-in])').forEach((el) => {
+      if (el.getBoundingClientRect().top < window.innerHeight) show(el);
+    }), 2500);
+    return () => { io.disconnect(); mo.disconnect(); clearTimeout(t); };
   }, []);
 }
 

@@ -1,0 +1,56 @@
+/* Filosofía: compromiso (banda marino) + misión/visión + valores */
+.ph { background: var(--bg-soft); }
+
+.ph__commit { background: var(--teal); padding: clamp(56px, 8vw, 96px) 0; overflow: hidden; }
+.ph__k { margin: 0 0 28px; color: var(--sun); font-size: .78rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+.ph__commit-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.ph__commit-list.reveal { opacity: 1; transform: none; }
+.ph__commit-list li { position: relative; display: flex; flex-direction: column; gap: 6px; padding: 8px clamp(16px, 3vw, 40px) 8px 0; }
+.ph__commit-list li + li { padding-left: clamp(16px, 3vw, 40px); border-left: 1px solid rgba(255,255,255,.12); }
+.ph__n { font-size: .8rem; font-weight: 700; color: var(--mint); letter-spacing: .1em; }
+.ph__commit-list strong { font-family: var(--display); font-weight: 800; font-size: clamp(2rem, 4.4vw, 3.4rem); line-height: 1.05; color: #fff; letter-spacing: -.02em; }
+.ph__rest { font-size: clamp(1.05rem, 1.6vw, 1.3rem); color: var(--sun); font-weight: 600; }
+.ph__commit-list li > * { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease) var(--d), transform .8s var(--ease) var(--d); }
+.ph__commit-list[data-in] li > * { opacity: 1; transform: none; }
+.ph__commit-list li strong { transition-delay: calc(var(--d) + 80ms); }
+.ph__commit-list li .ph__rest { transition-delay: calc(var(--d) + 180ms); }
+
+.ph__body { padding: clamp(64px, 9vw, 104px) 0 clamp(40px, 5vw, 56px); }
+.ph__head { max-width: 720px; margin-bottom: clamp(28px, 4vw, 44px); }
+.ph__head p:last-child { font-size: 1.08rem; color: var(--muted); }
+
+.ph__mv { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
+.ph__card { position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 12px; padding: clamp(28px, 4vw, 40px); border-radius: 22px; transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
+.ph__card:hover { transform: translateY(-6px); box-shadow: 0 28px 56px -28px rgba(11,31,56,.45); }
+.ph__card--mision { background: #fff; border: 1px solid var(--line); }
+.ph__card--vision { color: #d7dde4; background: linear-gradient(150deg, rgba(11,31,56,.80), rgba(7,21,40,.95) 70%), url('/media/hero-cartagena-2-poster.webp') center / cover no-repeat; }
+.ph__icon { display: grid; place-items: center; width: 76px; height: 76px; border-radius: 20px; background: var(--mint-50); }
+.ph__icon--dark { background: rgba(255,255,255,.08); }
+.ph__tag { margin: 4px 0 0; font-family: var(--display); font-weight: 800; font-size: 1.5rem; color: var(--ink); }
+.ph__card--vision .ph__tag { color: #fff; }
+.ph__text { margin: 0; font-size: 1.05rem; line-height: 1.7; }
+.ph__card--mision .ph__text { color: var(--text); }
+.ph__place { margin: auto 0 0; padding-top: 14px; display: inline-flex; align-items: center; gap: 6px; font-size: .85rem; font-weight: 600; color: var(--sun); }
+
+.ph__vt { margin: clamp(48px, 7vw, 72px) 0 20px; font-size: clamp(1.3rem, 2.2vw, 1.6rem); }
+.ph__values { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.ph__values.reveal { opacity: 1; transform: none; }
+.ph__values li { display: flex; align-items: center; gap: 16px; padding: 18px 20px; border-radius: 16px; background: #fff; border: 1px solid var(--line);
+  opacity: 0; transform: translateY(16px); transition: opacity .6s var(--ease) var(--d), transform .6s var(--ease) var(--d), border-color .3s, box-shadow .3s; }
+.ph__values[data-in] li { opacity: 1; transform: none; }
+.ph__values li:hover { border-color: var(--sun); box-shadow: 0 14px 30px -18px rgba(11,31,56,.35); transform: translateY(-3px); transition-delay: 0s; }
+.ph__vicon { display: grid; place-items: center; flex: none; width: 52px; height: 52px; border-radius: 14px; background: var(--teal); color: var(--sun); transition: transform .4s var(--ease); }
+.ph__values li:hover .ph__vicon { transform: rotate(-8deg) scale(1.06); }
+.ph__vname { font-weight: 700; color: var(--ink); font-size: 1.02rem; }
+
+@media (max-width: 860px) {
+  .ph__commit-list { grid-template-columns: 1fr; gap: 22px; }
+  .ph__commit-list li + li { padding-left: 0; border-left: 0; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.12); }
+  .ph__mv { grid-template-columns: 1fr; }
+  .ph__values { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 520px) { .ph__values { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) {
+  .ph__commit-list li > *, .ph__values li { opacity: 1; transform: none; transition: none; }
+  .ph__card:hover, .ph__values li:hover { transform: none; }
+}
