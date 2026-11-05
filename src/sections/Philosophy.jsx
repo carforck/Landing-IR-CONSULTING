@@ -41,12 +41,12 @@ export default function Philosophy() {
 
         <div className="ph__mv">
           <article className="ph__card ph__card--mision reveal" data-lottie-hover>
-            <span className="ph__icon" aria-hidden="true"><LottieIcon name="mision" size={60} fallback={Target} fallbackSize={24} /></span>
+            <span className="ph__icon" aria-hidden="true"><LottieIcon name="mision" size={48} fallback={Target} fallbackSize={24} /></span>
             <p className="ph__tag">{tx.mission}</p>
             <p className="ph__text">{identity.mission}</p>
           </article>
           <article className="ph__card ph__card--vision reveal" data-lottie-hover>
-            <span className="ph__icon ph__icon--dark" aria-hidden="true"><LottieIcon name="vision" size={60} fallback={Telescope} fallbackSize={24} /></span>
+            <span className="ph__icon ph__icon--dark" aria-hidden="true"><LottieIcon name="vision" size={48} fallback={Telescope} fallbackSize={24} /></span>
             <p className="ph__tag">{tx.vision}</p>
             <p className="ph__text">{identity.vision}</p>
             <p className="ph__place"><MapPin size={14} aria-hidden="true" /> {tx.reach}</p>
@@ -59,7 +59,7 @@ export default function Philosophy() {
             const Icon = valueIcons[i] || ShieldCheck;
             return (
               <li key={i} style={{ '--d': `${i * 80}ms` }}>
-                <span className="ph__vicon" aria-hidden="true"><Icon size={30} weight="duotone" /></span>
+                <span className="ph__vicon" aria-hidden="true"><Icon size={22} weight="duotone" /></span>
                 <span className="ph__vname">{v}</span>
               </li>
             );

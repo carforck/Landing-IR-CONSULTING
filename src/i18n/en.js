@@ -11,7 +11,6 @@ export const brand = {
     'Clarity to decide.',
     'Discipline to execute.',
     'Information to create value.',
-    'Data-driven decisions.',
     'Growth with control.',
   ],
   audiences: ['business owners', 'executives', 'boards of directors'],
@@ -24,7 +23,8 @@ export const nav = [
   { id: 'servicios', label: 'Services' },
   { id: 'metodologia', label: 'Approach' },
   { id: 'liderazgo', label: 'Leadership' },
-  { id: 'firma', label: 'The firm' },
+  { id: 'diferenciales', label: 'Why us' },
+  { id: 'identidad', label: 'Identity' },
   { id: 'contacto', label: 'Contact' },
 ];
 
@@ -50,7 +50,7 @@ export const leader = {
   bio: 'Certified Public Accountant, Specialist in Finance and Master of Business Administration (MBA) from Universidad Tecnológica de Bolívar, with more than 25 years of professional experience.',
   stats: [
     { value: '25+', label: 'years of experience' },
-    { value: 'MBA', label: 'Universidad Tecnológica de Bolívar' },
+    { value: '6', label: 'service lines' },
     { value: '7', label: 'industries of experience' },
   ],
   career: 'Experience in general management, administrative and financial management, financial leadership, comptrollership, treasury, strategic planning and management advisory. She has led teams and processes in reorganization, budget control, costing, management systems and financial structuring.',

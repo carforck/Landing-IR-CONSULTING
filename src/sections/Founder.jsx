@@ -1,39 +1,33 @@
 import { useState } from 'react';
-import { ArrowRight, Check, GraduationCap, MessageCircle } from 'lucide-react';
+import { ArrowRight, Check } from 'lucide-react';
 import { useLang } from '../i18n/index.jsx';
-import { CountUp } from '../fx.jsx';
+import { waProps, WhatsAppGlyph } from '../whatsapp.jsx';
 import './founder.css';
 
-// Perfil de la fundadora. Todo sale de leader.bio / leader.career / leader.stats / leader.quote (portafolio);
-// roles, procesos liderados y formación están en ui.founder (i18n/ui.js).
+// Perfil de la fundadora + "Quiénes somos" de la firma (antes sección aparte "Nuestra firma").
+// Todo sale del portafolio: leader (data.js), firm.who y brand.audiences; roles, procesos y formación en ui.founder.
+// "25+ años" se menciona una sola vez aquí (en la bio); la cifra destacada vive en el hero.
+const BASE = import.meta.env.BASE_URL;
 
 export default function Founder() {
-  const { lang, t } = useLang();
-  const { leader, brand } = t;
+  const { t } = useLang();
+  const { leader, brand, firm } = t;
   const tx = t.ui.founder;
   const [photoOk, setPhotoOk] = useState(Boolean(leader.photo));
   const first = leader.name.split(' ')[0];
-  const wa = brand.contact.whatsapp
-    ? `https://wa.me/${brand.contact.whatsapp}?text=${encodeURIComponent(t.ui.wa.meeting)}`
-    : '#contacto';
   return (
     <section id="liderazgo" className="fd" aria-labelledby="fd-title">
       <div className="container fd__grid">
         <div className="fd__visual reveal">
           <div className="fd__frame">
             {photoOk ? (
-              <img src={leader.photo} alt={`${leader.name}, ${leader.role}`} width="1000" height="1250" loading="lazy" decoding="async" onError={() => setPhotoOk(false)} />
+              <picture>
+                <source srcSet={`${BASE}img/isabel.webp`} type="image/webp" />
+                <img src={leader.photo} alt={`${leader.name}, ${leader.role}`} width="800" height="1000" loading="lazy" decoding="async" onError={() => setPhotoOk(false)} />
+              </picture>
             ) : (
               <div className="fd__ph" aria-hidden="true">IR</div>
             )}
-          </div>
-          <div className="fd__float fd__float--years">
-            <strong><CountUp key={lang} value={leader.stats[0].value} /></strong>
-            <span>{leader.stats[0].label}</span>
-          </div>
-          <div className="fd__float fd__float--mba">
-            <GraduationCap size={20} aria-hidden="true" />
-            <span><b>MBA</b> Universidad Tecnológica de Bolívar</span>
           </div>
         </div>
 
@@ -45,9 +39,19 @@ export default function Founder() {
           <ul className="fd__creds reveal" aria-label={tx.credsLabel}>
             {tx.creds.map((c) => <li key={c}>{c}</li>)}
           </ul>
-          <p className="fd__bio reveal">
-            {tx.bio}
-          </p>
+          <p className="fd__bio reveal">{tx.bio}</p>
+
+          <blockquote className="fd__quote reveal">
+            <p>{leader.quote}</p>
+          </blockquote>
+
+          <div className="fd__block fd__who reveal">
+            <h3>{tx.whoTitle}</h3>
+            <p>{firm.who}</p>
+            <ul className="fd__aud" aria-label={tx.audLabel}>
+              {brand.audiences.map((a) => <li key={a}>{a}</li>)}
+            </ul>
+          </div>
 
           <div className="fd__block reveal">
             <h3>{tx.rolesTitle}</h3>
@@ -59,15 +63,11 @@ export default function Founder() {
             <ul className="fd__led">{tx.led.map((r) => <li key={r}><Check size={16} aria-hidden="true" />{r}</li>)}</ul>
           </div>
 
-          <blockquote className="fd__quote reveal">
-            <p>{leader.quote}</p>
-          </blockquote>
-
           <div className="fd__ctas reveal">
-            <a className="btn btn--primary" href={wa} target={brand.contact.whatsapp ? '_blank' : undefined} rel="noopener noreferrer">
-              <MessageCircle size={18} aria-hidden="true" /> {tx.book(first)}
+            <a {...waProps(t.ui.wa.hello)} className="btn btn--primary" aria-label={t.ui.cta.waLabel}>
+              <WhatsAppGlyph size={18} /> {t.ui.cta.wa}
             </a>
-            <a className="btn btn--outline" href="#servicios">{tx.services} <ArrowRight size={18} aria-hidden="true" /></a>
+            <a className="btn btn--outline" href="#contacto">{t.ui.cta.diagnosis} <ArrowRight size={18} aria-hidden="true" /></a>
           </div>
         </div>
       </div>

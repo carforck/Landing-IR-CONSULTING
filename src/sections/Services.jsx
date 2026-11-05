@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Compass, LineChart, Wallet, FileSpreadsheet, ShieldCheck, TrendingUp, Briefcase, ChevronDown, ArrowRight, Check } from 'lucide-react';
+import { Compass, LineChart, Wallet, FileSpreadsheet, ShieldCheck, TrendingUp, Briefcase, ChevronDown, ArrowRight, Check, Pause, Play } from 'lucide-react';
 import { useLang } from '../i18n/index.jsx';
 import LottieIcon from '../components/LottieIcon.jsx';
 import './services.css';
@@ -17,17 +17,21 @@ function SvcIcon({ s, size }) {
 }
 
 const MOBILE_QUERY = '(max-width: 759px)';
+const WIDE_QUERY = '(min-width: 1024px)';
+// La rotación automática solo tiene sentido con ratón (puntero fino): en táctil rotaría mientras se lee.
+const AUTO_QUERY = '(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)';
 
-function useIsMobile() {
-  const get = () => typeof window !== 'undefined' && window.matchMedia(MOBILE_QUERY).matches;
-  const [mobile, setMobile] = useState(get);
+function useMedia(query) {
+  const get = () => typeof window !== 'undefined' && window.matchMedia(query).matches;
+  const [match, setMatch] = useState(get);
   useEffect(() => {
-    const mq = window.matchMedia(MOBILE_QUERY);
-    const on = () => setMobile(mq.matches);
+    const mq = window.matchMedia(query);
+    const on = () => setMatch(mq.matches);
+    on();
     mq.addEventListener('change', on);
     return () => mq.removeEventListener('change', on);
-  }, []);
-  return mobile;
+  }, [query]);
+  return match;
 }
 
 // Avisa al formulario de contacto qué servicio se eligió (Contact escucha 'ir:servicio').
@@ -54,21 +58,23 @@ function Detail({ s }) {
       </div>
       <aside className="svc-detail__side">
         {media.services[s.id] && (
-          <img className="svc-detail__img" src={media.services[s.id].src} alt={media.services[s.id].alt} loading="lazy" decoding="async" width="800" height="533" />
+          <img className="svc-detail__img" src={media.services[s.id].src} srcSet={media.services[s.id].srcSet}
+            sizes="(min-width: 1024px) 300px, (min-width: 760px) 90vw, 100vw"
+            alt={media.services[s.id].alt} loading="lazy" decoding="async" width="800" height="533" />
         )}
         <div className="svc-note">
           <p className="svc-note__title">{s.noteTitle}</p>
           <p className="svc-note__text">{s.note}</p>
         </div>
         <a href="#contacto" className="btn btn--primary svc-detail__cta" onClick={() => pickService(s.id)}>
-          {ui.services.cta} <ArrowRight size={18} aria-hidden="true" />
+          {ui.cta.diagnosis} <ArrowRight size={18} aria-hidden="true" />
         </a>
       </aside>
     </div>
   );
 }
 
-function Tabs({ active, setActive }) {
+function Tabs({ active, setActive, vertical }) {
   const { t: { services, ui } } = useLang();
   const refs = useRef([]);
   const idx = Math.max(0, services.findIndex((s) => s.id === active));
@@ -89,7 +95,7 @@ function Tabs({ active, setActive }) {
 
   return (
     <>
-      <div className="svc-grid" role="tablist" aria-label={ui.services.tablist}>
+      <div className="svc-grid" role="tablist" aria-label={ui.services.tablist} aria-orientation={vertical ? 'vertical' : 'horizontal'}>
         {services.map((s, i) => {
           const selected = i === idx;
           return (
@@ -168,14 +174,16 @@ export default function Services() {
   const { lang, t } = useLang();
   const { services } = t;
   const tx = t.ui.services;
-  const mobile = useIsMobile();
+  const mobile = useMedia(MOBILE_QUERY);
+  const wide = useMedia(WIDE_QUERY);
+  const canAuto = useMedia(AUTO_QUERY) && !mobile;
   const [active, setActive] = useState(services[0].id);
   const [hover, setHover] = useState(false);
   const [inView, setInView] = useState(false);
   const [hold, setHold] = useState(false);
+  const [paused, setPaused] = useState(false);
   const wrapRef = useRef(null);
-  const reduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const auto = !mobile && !reduced && inView && !hover;
+  const auto = canAuto && !paused && inView && !hover;
 
   // Solo rota mientras la sección está en pantalla.
   useEffect(() => {
@@ -199,17 +207,26 @@ export default function Services() {
   const choose = (id) => { setHold(true); setActive(id); };
 
   return (
-    <section id="servicios" className="section svc">
+    <section id="servicios" className="section section--soft svc" aria-labelledby="svc-title">
       <div className="container">
-        <header className="section-head reveal">
+        <header className="section-head svc-head reveal">
           <p className="kicker">{tx.kicker}</p>
-          <h2>{tx.title}</h2>
+          <h2 id="svc-title">{tx.title}</h2>
           <p>{tx.intro}</p>
         </header>
+        {/* WCAG 2.2.2: control visible para detener el movimiento automático. */}
+        {canAuto && (
+          <div className="svc-tools">
+            <button type="button" className="svc-pause" aria-pressed={paused} onClick={() => setPaused((p) => !p)}>
+              {paused ? <Play size={16} aria-hidden="true" /> : <Pause size={16} aria-hidden="true" />}
+              {paused ? tx.play : tx.pause}
+            </button>
+          </div>
+        )}
         {/* reveal solo en el contenedor estable: su contenido cambia entre tabs y acordeón. */}
         <div
           ref={wrapRef}
-          className={`svc-wrap reveal${auto ? ' is-auto' : ''}`}
+          className={`svc-wrap reveal${auto ? ' is-auto' : ''}${wide && !mobile ? ' svc-wrap--md' : ''}`}
           style={{ '--svc-dur': `${hold ? HOLD_MS : AUTO_MS}ms` }}
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
@@ -217,7 +234,9 @@ export default function Services() {
           onBlur={() => setHover(false)}
         >
           {/* key={lang}: al cambiar de idioma se remonta el carrusel (barra de progreso y Lottie) sin tocar el .reveal. */}
-          {mobile ? <Accordion key={lang} active={active} setActive={setActive} /> : <Tabs key={lang} active={active} setActive={choose} />}
+          {mobile
+            ? <Accordion key={lang} active={active} setActive={setActive} />
+            : <Tabs key={lang} active={active} setActive={choose} vertical={wide} />}
         </div>
       </div>
     </section>

@@ -11,9 +11,9 @@ export const brand = {
     'Claridad para decidir.',
     'Disciplina para ejecutar.',
     'Información para generar valor.',
-    'Decisiones sustentadas en datos.',
     'Crecer con control.',
   ],
+  // Frases rotativas: máx. ~31 caracteres para que la reserva de altura del hero sea estable.
   // "Nace para acompañar a empresarios, gerentes y juntas directivas en decisiones de alto impacto."
   audiences: ['empresarios', 'gerentes', 'juntas directivas'],
   summary:
@@ -27,7 +27,8 @@ export const nav = [
   { id: 'servicios', label: 'Servicios' },
   { id: 'metodologia', label: 'Metodología' },
   { id: 'liderazgo', label: 'Liderazgo' },
-  { id: 'firma', label: 'La firma' },
+  { id: 'diferenciales', label: 'Diferenciales' },
+  { id: 'identidad', label: 'Identidad' },
   { id: 'contacto', label: 'Contacto' },
 ];
 
@@ -55,7 +56,7 @@ export const leader = {
   bio: 'Contadora Pública, Especialista en Finanzas y Magíster en Administración y Gerencia (MBA) de la Universidad Tecnológica de Bolívar, con más de 25 años de trayectoria profesional.',
   stats: [
     { value: '25+', label: 'años de trayectoria' },
-    { value: 'MBA', label: 'Universidad Tecnológica de Bolívar' },
+    { value: '6', label: 'líneas de servicio' },
     { value: '7', label: 'sectores de experiencia' },
   ],
   career: 'Experiencia en gerencia general, gerencia administrativa y financiera, dirección financiera, contraloría, tesorería, planeación estratégica y asesoría gerencial. Ha liderado equipos y procesos de reorganización, control presupuestal, costeo, sistemas de gestión y estructuración financiera.',

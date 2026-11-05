@@ -19,7 +19,6 @@ function localizeMedia(m) {
       ...baseMedia,
       hero: { ...baseMedia.hero, alt: m.hero },
       services: Object.fromEntries(Object.entries(baseMedia.services).map(([k, v]) => [k, { ...v, alt: m.services[k] ?? v.alt }])),
-      firma: { ...baseMedia.firma, alt: m.firma },
       contacto: { ...baseMedia.contacto, alt: m.contacto },
     },
     heroReel: baseReel.map((c, i) => ({ ...c, ...(m.reel[i] || {}) })),
