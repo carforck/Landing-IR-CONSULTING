@@ -155,3 +155,15 @@
 .hdr-logo__iso { width: 50px; height: 50px; }
 .ftr__brand .hdr-logo__iso { width: 64px; height: 64px; }
 @media (max-width: 400px) { .hdr-logo__iso { width: 40px; height: 40px; } .hdr-logo__word { font-size: 1rem; } }
+
+/* ---------- Selector de idioma ES | EN (segmentado) ---------- */
+.lang-switch { display: inline-flex; flex: none; padding: 3px; gap: 2px; border: 1px solid rgba(255, 255, 255, 0.28); border-radius: 999px; background: rgba(11, 31, 56, 0.35); }
+.lang-switch__btn { min-width: 44px; min-height: 38px; padding: 0 10px; border: 0; border-radius: 999px; background: transparent; color: #e3eeeb; font: 600 0.8rem/1 var(--font); letter-spacing: 0.08em; cursor: pointer; transition: background .2s, color .2s; }
+.lang-switch__btn:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
+.lang-switch__btn[aria-pressed="true"] { background: var(--sun); color: #0b1f38; }
+.lang-switch__btn:focus-visible { outline: 2px solid var(--mint); outline-offset: 2px; }
+/* Área táctil de 44px: el grupo mide 44px (38 + 2×3 de padding). */
+.hdr__lang { margin-left: -8px; }
+.hdr__panel-lang { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: -8px; padding: 14px 4px 22px; color: #cfe5ea; font-size: 0.9rem; border-top: 1px solid rgba(255, 255, 255, 0.08); }
+.hdr__panel-lang .lang-switch__btn { min-height: 44px; min-width: 56px; }
+@media (max-width: 960px) { .hdr .hdr__lang { display: none; } }

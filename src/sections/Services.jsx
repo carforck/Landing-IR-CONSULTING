@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Compass, LineChart, Wallet, FileSpreadsheet, ShieldCheck, TrendingUp, Briefcase, ChevronDown, ArrowRight, Check } from 'lucide-react';
-import { services } from '../data.js';
-import { media } from '../media.js';
+import { useLang } from '../i18n/index.jsx';
 import LottieIcon from '../components/LottieIcon.jsx';
 import './services.css';
 
@@ -37,6 +36,7 @@ function pickService(id) {
 }
 
 function Detail({ s }) {
+  const { t: { media, ui } } = useLang();
   return (
     <div className="svc-detail">
       <div className="svc-detail__main">
@@ -61,7 +61,7 @@ function Detail({ s }) {
           <p className="svc-note__text">{s.note}</p>
         </div>
         <a href="#contacto" className="btn btn--primary svc-detail__cta" onClick={() => pickService(s.id)}>
-          Consultar este servicio <ArrowRight size={18} aria-hidden="true" />
+          {ui.services.cta} <ArrowRight size={18} aria-hidden="true" />
         </a>
       </aside>
     </div>
@@ -69,6 +69,7 @@ function Detail({ s }) {
 }
 
 function Tabs({ active, setActive }) {
+  const { t: { services, ui } } = useLang();
   const refs = useRef([]);
   const idx = Math.max(0, services.findIndex((s) => s.id === active));
   const current = services[idx];
@@ -88,7 +89,7 @@ function Tabs({ active, setActive }) {
 
   return (
     <>
-      <div className="svc-grid" role="tablist" aria-label="Líneas de servicio">
+      <div className="svc-grid" role="tablist" aria-label={ui.services.tablist}>
         {services.map((s, i) => {
           const selected = i === idx;
           return (
@@ -110,7 +111,7 @@ function Tabs({ active, setActive }) {
               <span className="svc-card__area">{s.area}</span>
               <span className="svc-card__title">{s.title}</span>
               <span className="svc-card__lead">{s.lead}</span>
-              <span className="svc-card__more" aria-hidden="true">{selected ? 'Viendo detalle' : 'Ver detalle'}</span>
+              <span className="svc-card__more" aria-hidden="true">{selected ? ui.services.viewing : ui.services.view}</span>
               {selected && <span className="svc-card__progress" key={s.id} aria-hidden="true" />}
             </button>
           );
@@ -124,6 +125,7 @@ function Tabs({ active, setActive }) {
 }
 
 function Accordion({ active, setActive }) {
+  const { t: { services } } = useLang();
   return (
     <ul className="svc-acc">
       {services.map((s) => {
@@ -163,6 +165,9 @@ const AUTO_MS = 7000;      // cada cuánto avanza solo
 const HOLD_MS = 15000;     // pausa tras una elección del usuario
 
 export default function Services() {
+  const { lang, t } = useLang();
+  const { services } = t;
+  const tx = t.ui.services;
   const mobile = useIsMobile();
   const [active, setActive] = useState(services[0].id);
   const [hover, setHover] = useState(false);
@@ -189,7 +194,7 @@ export default function Services() {
       setActive(services[(i + 1) % services.length].id);
     }, hold ? HOLD_MS : AUTO_MS);
     return () => clearTimeout(t);
-  }, [auto, active, hold]);
+  }, [auto, active, hold, lang, services]); // lang: al cambiar de idioma el temporizador se reinicia
 
   const choose = (id) => { setHold(true); setActive(id); };
 
@@ -197,9 +202,9 @@ export default function Services() {
     <section id="servicios" className="section svc">
       <div className="container">
         <header className="section-head reveal">
-          <p className="kicker">Servicios</p>
-          <h2>Soluciones integrales para cada frente de la empresa</h2>
-          <p>Seis líneas de trabajo que se combinan según el reto de cada organización. Seleccione una para ver su alcance.</p>
+          <p className="kicker">{tx.kicker}</p>
+          <h2>{tx.title}</h2>
+          <p>{tx.intro}</p>
         </header>
         {/* reveal solo en el contenedor estable: su contenido cambia entre tabs y acordeón. */}
         <div
@@ -211,7 +216,8 @@ export default function Services() {
           onFocus={() => setHover(true)}
           onBlur={() => setHover(false)}
         >
-          {mobile ? <Accordion active={active} setActive={setActive} /> : <Tabs active={active} setActive={choose} />}
+          {/* key={lang}: al cambiar de idioma se remonta el carrusel (barra de progreso y Lottie) sin tocar el .reveal. */}
+          {mobile ? <Accordion key={lang} active={active} setActive={setActive} /> : <Tabs key={lang} active={active} setActive={choose} />}
         </div>
       </div>
     </section>

@@ -1,7 +1,6 @@
 import { ArrowRight, MapPin } from 'lucide-react';
 import { CountUp } from '../fx.jsx';
-import { brand, leader } from '../data.js';
-import { media, heroReel } from '../media.js';
+import { useLang } from '../i18n/index.jsx';
 import { useEffect, useState } from 'react';
 import './chrome.css';
 
@@ -48,6 +47,7 @@ function WordSwap({ words }) {
 const CLIP_MS = 8000;
 
 function HeroReel() {
+  const { t: { media, heroReel } } = useLang();
   const reel = heroReel?.length ? heroReel : [{ ...media.hero, place: 'Cartagena' }];
   const [idx, setIdx] = useState(0);
   const [prev, setPrev] = useState(null);
@@ -87,6 +87,9 @@ function HeroReel() {
 }
 
 export default function Hero() {
+  const { lang, t } = useLang();
+  const { brand, leader } = t;
+  const tx = t.ui.hero;
   return (
     <section className="hero" aria-labelledby="hero-title">
       <HeroReel />
@@ -96,20 +99,20 @@ export default function Hero() {
           <h1 id="hero-title" className="hero__title">
             <span className="hero__line">{brand.headline[0]}</span>
             <span className="sr-only">{brand.headline[1]}</span>
-            <Typewriter phrases={brand.rotating} />
+            <Typewriter key={lang} phrases={brand.rotating} />
           </h1>
           <p className="hero__summary">{brand.summary}</p>
           <p className="hero__aud">
-            Acompañamos a <WordSwap words={brand.audiences} /> en decisiones de alto impacto.
+            {tx.audPre} <WordSwap key={lang} words={brand.audiences} /> {tx.audPost}
           </p>
           <div className="hero__ctas">
             <a href="#contacto" className="btn btn--mint">
-              Solicitar diagnóstico <ArrowRight size={18} aria-hidden="true" />
+              {tx.ctaPrimary} <ArrowRight size={18} aria-hidden="true" />
             </a>
-            <a href="#servicios" className="btn btn--ghost">Ver servicios</a>
+            <a href="#servicios" className="btn btn--ghost">{tx.ctaSecondary}</a>
           </div>
           <p className="hero__owner">
-            Liderada por <strong>{brand.owner}</strong> <span aria-hidden="true">·</span> {brand.city}
+            {tx.ledBy} <strong>{brand.owner}</strong> <span aria-hidden="true">·</span> {brand.city}
           </p>
         </div>
       </div>
@@ -118,8 +121,8 @@ export default function Hero() {
         <div className="container">
           <ul className="hero-stats reveal">
             {leader.stats.slice(0, 3).map((s) => (
-              <li key={s.label} className="hero-stats__item">
-                <span className="hero-stats__value"><CountUp value={s.value} /></span>
+              <li key={s.value} className="hero-stats__item">
+                <span className="hero-stats__value"><CountUp key={lang} value={s.value} /></span>
                 <span className="hero-stats__label">{s.label}</span>
               </li>
             ))}

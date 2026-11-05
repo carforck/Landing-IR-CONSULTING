@@ -1,4 +1,4 @@
-import { method } from '../data.js';
+import { useLang } from '../i18n/index.jsx';
 import LottieIcon from '../components/LottieIcon.jsx';
 import { Search, PencilRuler, Cog, Flag } from 'lucide-react';
 import './services.css';
@@ -9,11 +9,13 @@ const STEP_ANIM = [
 ];
 
 export default function Method() {
+  const { t } = useLang();
+  const { method } = t;
   return (
     <section id="metodologia" className="section section--dark mth">
       <div className="container">
         <header className="section-head reveal">
-          <p className="kicker">Metodología</p>
+          <p className="kicker">{t.ui.method.kicker}</p>
           <h2>{method.title}</h2>
           <p>{method.subtitle}</p>
         </header>
@@ -25,7 +27,7 @@ export default function Method() {
                 {STEP_ANIM[i] && <LottieIcon name={STEP_ANIM[i][0]} fallback={STEP_ANIM[i][1]} size={60} className="mth-step__anim" />}
               </div>
               <div className="mth-step__body">
-                <h3 className="mth-step__title"><span className="sr-only">Paso {s.n}: </span>{s.title}</h3>
+                <h3 className="mth-step__title"><span className="sr-only">{t.ui.method.step} {s.n}: </span>{s.title}</h3>
                 <p className="mth-step__text">{s.text}</p>
               </div>
             </li>

@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { MessageCircle } from 'lucide-react';
-import { brand } from '../data.js';
+import { brand } from '../data.js'; // solo el número de WhatsApp (igual en ambos idiomas)
+import { useLang } from '../i18n/index.jsx';
 import './floating.css';
 
-const WA_TEXT = 'Hola Isabel, me interesa una asesoría de IR Consulting';
 const whatsapp = brand.contact?.whatsapp?.replace(/\D/g, '');
 
 // Glifo de WhatsApp (mismo trazado que la landing SOTEC). Solo se usa si hay número configurado.
@@ -42,6 +42,8 @@ function useFloatingVisible() {
 }
 
 export default function FloatingContact() {
+  const { t } = useLang();
+  const tx = t.ui.fab;
   const visible = useFloatingVisible();
   const [peek, setPeek] = useState(false);
   const shown = useRef(false);
@@ -58,18 +60,18 @@ export default function FloatingContact() {
 
   const link = whatsapp
     ? {
-        href: `https://wa.me/${whatsapp}?text=${encodeURIComponent(WA_TEXT)}`,
+        href: `https://wa.me/${whatsapp}?text=${encodeURIComponent(t.ui.wa.advisory)}`,
         target: '_blank',
         rel: 'noopener noreferrer',
-        'aria-label': 'Escribir a Isabel Rodríguez por WhatsApp (se abre en una pestaña nueva)',
+        'aria-label': tx.waLabel,
       }
-    : { href: '#contacto', 'aria-label': 'Ir al formulario de contacto' };
+    : { href: '#contacto', 'aria-label': tx.formLabel };
 
   return (
     <div className={`fab${visible ? ' is-visible' : ''}${peek ? ' is-peek' : ''}${whatsapp ? ' fab--wa' : ''}`}>
       <p className="fab__bubble" aria-hidden="true">
-        <strong>¿Necesita más información?</strong>
-        <span>{whatsapp ? 'Escríbale a Isabel por WhatsApp' : 'Cuéntenos su necesidad en el formulario'}</span>
+        <strong>{tx.title}</strong>
+        <span>{whatsapp ? tx.wa : tx.form}</span>
       </p>
       <a className="fab__btn" {...link} tabIndex={visible ? undefined : -1} aria-hidden={visible ? undefined : true}>
         {whatsapp ? <WhatsAppGlyph width={28} height={28} /> : <MessageCircle size={26} aria-hidden="true" />}

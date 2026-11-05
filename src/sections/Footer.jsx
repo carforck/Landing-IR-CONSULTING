@@ -1,41 +1,43 @@
 import { ArrowUpRight, MapPin, MessageCircle } from 'lucide-react';
-import { brand, nav, services } from '../data.js';
+import { useLang } from '../i18n/index.jsx';
 import { Logo } from './Header.jsx';
 import './chrome.css';
 
-const wa = brand.contact.whatsapp
-  ? `https://wa.me/${brand.contact.whatsapp}?text=${encodeURIComponent('Hola Isabel, me interesa una asesoría de IR Consulting')}`
-  : '#contacto';
-
 export default function Footer() {
+  const { t } = useLang();
+  const { brand, nav, services } = t;
+  const tx = t.ui.footer;
+  const wa = brand.contact.whatsapp
+    ? `https://wa.me/${brand.contact.whatsapp}?text=${encodeURIComponent(t.ui.wa.advisory)}`
+    : '#contacto';
   return (
     <footer className="ftr">
       <div className="container">
         <div className="ftr__cta reveal">
           <div>
-            <h2 className="ftr__shine">¿Conversamos sobre su empresa?</h2>
-            <p>Cuéntenos el reto y le proponemos un alcance a la medida.</p>
+            <h2 className="ftr__shine">{tx.title}</h2>
+            <p>{tx.text}</p>
           </div>
           <a className="btn btn--mint" href={wa} target={brand.contact.whatsapp ? '_blank' : undefined} rel="noopener noreferrer">
-            <MessageCircle size={18} aria-hidden="true" /> Escribir por WhatsApp
+            <MessageCircle size={18} aria-hidden="true" /> {tx.wa}
           </a>
         </div>
 
         <div className="ftr__grid reveal">
           <div className="ftr__brand">
-            <a href="#main" aria-label="IR Consulting, volver al inicio"><Logo tagline /></a>
+            <a href="#main" aria-label={tx.home}><Logo tagline /></a>
             <p>{brand.summary}</p>
           </div>
           <div>
-            <h3>Servicios</h3>
+            <h3>{tx.services}</h3>
             <ul>{services.map((s) => <li key={s.id}><a href="#servicios">{s.title}</a></li>)}</ul>
           </div>
           <div>
-            <h3>La firma</h3>
+            <h3>{tx.firm}</h3>
             <ul>{nav.map((n) => <li key={n.id}><a href={`#${n.id}`}>{n.label}</a></li>)}</ul>
           </div>
           <div>
-            <h3>Contacto</h3>
+            <h3>{tx.contact}</h3>
             <ul>
               {brand.contact.phone && (
                 <li><a href={wa} target="_blank" rel="noopener noreferrer"><MessageCircle size={16} aria-hidden="true" />{brand.contact.phone}</a></li>
@@ -46,9 +48,9 @@ export default function Footer() {
         </div>
 
         <div className="ftr__bottom">
-          <p>© {new Date().getFullYear()} IR Consulting · {brand.owner}. Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} IR Consulting · {brand.owner}. {tx.rights}</p>
           <p className="ftr__credit">
-            Hecho por{' '}
+            {tx.madeBy}{' '}
             <a href="https://vanttagetech.com/" target="_blank" rel="noopener noreferrer">
               Vanttage <ArrowUpRight size={13} aria-hidden="true" />
             </a>

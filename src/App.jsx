@@ -12,14 +12,16 @@ import Contact from './sections/Contact.jsx';
 import FloatingContact from './sections/FloatingContact.jsx';
 import Footer from './sections/Footer.jsx';
 import { useReveal } from './fx.jsx';
+import { useLang } from './i18n/index.jsx';
 
 // Orden comercial: promesa → confianza (sectores, diferenciales) → oferta → llamada a la acción
 // → cómo trabajamos → quién lo hace → la firma → contacto.
 export default function App() {
   useReveal();
+  const { t } = useLang();
   return (
     <>
-      <a className="skip" href="#main">Saltar al contenido</a>
+      <a className="skip" href="#main">{t.ui.skip}</a>
       <Header />
       <main id="main">
         <Hero />
